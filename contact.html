@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Involved</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-bar"><div class="container"><a href="#">Newsletter</a><a href="#">Press</a><a href="https://facebook.com/theewasteproject">Facebook</a></div></div>
+    <header>
+        <div class="container header-inner">
+            <div class="logo">♻️ The E-Waste Project</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown"><a href="#">About ▾</a>
+                        <div class="dropdown-content"><a href="mission.html">Mission & Vision</a><a href="team.html">Our Team</a><a href="partners.html">Partners</a></div>
+                    </li>
+                    <li class="dropdown"><a href="#">Resources ▾</a>
+                        <div class="dropdown-content"><a href="resources.html">All Resources</a></div>
+                    </li>
+                    <li><a href="updates.html">News & Updates</a></li>
+                    <li><a href="contact.html" style="color:var(--primary-color); font-weight:bold;">Get Involved</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header"><div class="container"><h1>Get Involved</h1><p>Volunteer, Donate, or Partner with us.</p></div></div>
+
+    <div class="container contact-grid">
+        <div class="contact-info-box">
+            <h2 style="color:var(--primary-color); margin-bottom:20px;">Contact Us</h2>
+            <p><strong>📍 Visit Us:</strong><br>UP Electrical and Electronics Engineering Institute<br>Diliman, Quezon City, Philippines</p><br>
+            <p><strong>📧 Email:</strong><br><a href="mailto:theewasteproject@gmail.com">theewasteproject@gmail.com</a></p><br>
+            <div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15440.85768560378!2d121.0685333!3d14.6511674!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b7760980598d%3A0x6331a9829f76a59b!2sElectrical%20and%20Electronics%20Engineering%20Institute!5e0!3m2!1sen!2sph!4v1708137000000!5m2!1sen!2sph" allowfullscreen="" loading="lazy"></iframe></div>
+        </div>
+
+        <div>
+            <h2 style="margin-bottom: 20px;">Send us a Message</h2>
+            <form id="contactForm">
+                <div class="form-group"><label>Your Name</label><input type="text" id="name" required></div>
+                <div class="form-group"><label>Email Address</label><input type="email" id="email" required></div>
+                <div class="form-group"><label>Message</label><textarea id="message" rows="5" required></textarea></div>
+                <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer><div class="container"><p style="text-align: center;">© 2024 The E-Waste Project.</p></div></footer>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Sending..."; submitBtn.style.backgroundColor = "#ccc"; submitBtn.disabled = true;
+            setTimeout(() => {
+                alert(`Thank you! We have received your message.`);
+                form.reset(); submitBtn.innerText = "Message Sent!"; submitBtn.style.backgroundColor = "#2E7D32";
+                setTimeout(() => { submitBtn.innerText = originalText; submitBtn.style.backgroundColor = ""; submitBtn.disabled = false; }, 3000);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
