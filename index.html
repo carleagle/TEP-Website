@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The E-Waste Project</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #2E7D32; /* Forest Green */
+            --secondary-color: #81C784; /* Light Green */
+            --accent-color: #FFC107; /* Amber */
+            --dark-text: #333333;
+            --light-bg: #f4f9f4;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { line-height: 1.6; color: var(--dark-text); background-color: var(--light-bg); }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        html { scroll-behavior: smooth; }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: top 0.4s ease-in-out;
+        }
+
+        .nav-up { top: -80px; } 
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .logo span { color: var(--accent-color); }
+        nav ul { display: flex; gap: 20px; }
+        nav a:hover { color: var(--accent-color); transition: 0.3s; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            margin-top: 60px; 
+            background: linear-gradient(rgba(46, 125, 50, 0.85), rgba(46, 125, 50, 0.85)), url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; margin: 0 auto 30px auto; }
+        
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--dark-text);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+            display: inline-block;
+        }
+        .btn:hover { background-color: #ffca2c; transform: scale(1.05); }
+
+        /* --- SECTIONS --- */
+        section { padding: 80px 20px; }
+        .section-title {
+            text-align: center; margin-bottom: 40px; color: var(--primary-color);
+            font-size: 2.2rem; position: relative;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--accent-color); margin: 10px auto;
+        }
+
+        /* --- CARDS & GRID --- */
+        .vm-grid, .updates-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; max-width: 1200px; margin: auto;
+        }
+        .card, .update-item {
+            background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); overflow: hidden;
+        }
+        .card { padding: 30px; text-align: center; border-top: 5px solid var(--primary-color); }
+        .card h3 { color: var(--primary-color); margin-bottom: 15px; }
+
+        /* --- UPDATES --- */
+        .date-badge {
+            background: var(--secondary-color); color: white; padding: 5px 10px;
+            font-size: 0.8rem; font-weight: bold; display: inline-block;
+            margin: 15px 0 0 15px; border-radius: 4px;
+        }
+        .update-content { padding: 20px; }
+        .read-more { color: var(--primary-color); font-weight: bold; display: block; margin-top: 10px; }
+
+        /* --- TEAM (UPDATED) --- */
+        .team-grid {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;
+            max-width: 1000px; margin: auto;
+        }
+
+        .team-member {
+            background: white; width: 220px; padding: 20px;
+            border-radius: 15px; /* Rounded card */
+            display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer; /* Shows it's clickable */
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover { transform: translateY(-10px); }
+
+        .team-img {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            object-fit: cover; /* Ensures image doesn't stretch */
+            border: 3px solid var(--secondary-color);
+            margin-bottom: 15px;
+            background-color: #eee; /* Grey placeholder if image missing */
+        }
+
+        .know-more-btn {
+            margin-top: 10px; font-size: 0.8rem; color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* --- PARTNERS --- */
+        .partners-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; }
+        .partner-logo { font-weight: bold; font-size: 1.5rem; color: #777; border: 2px dashed #ccc; padding: 20px 40px; border-radius: 8px; }
+
+        /* --- CONTACT & MAP --- */
+        .contact-container {
+            display: flex; flex-wrap: wrap; max-width: 1000px; margin: auto;
+            background: white; border-radius: 8px; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .contact-info { background: var(--primary-color); color: white; flex: 1; padding: 40px; min-width: 300px; }
+        .contact-form { flex: 1.5; padding: 40px; min-width: 300px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 5px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;
+        }
+
+        .map-container {
+            width: 100%; height: 300px; margin-top: 20px;
+            border-radius: 8px; overflow: hidden;
+        }
+        
+        iframe { width: 100%; height: 100%; border: 0; }
+
+        /* --- FOOTER --- */
+        footer { background: #222; color: white; text-align: center; padding: 30px 20px; margin-top: 40px; }
+        .footer-links a { color: var(--secondary-color); margin: 0 10px; }
+
+        /* --- MODAL (POPUP 2nd PAGE) --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto;
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; padding: 40px;
+            border: 1px solid #888; width: 80%; max-width: 600px;
+            border-radius: 10px; position: relative;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa; position: absolute; top: 10px; right: 20px;
+            font-size: 28px; font-weight: bold; cursor: pointer;
+        }
+        .close:hover { color: black; }
+
+        /* Modal Image */
+        #modalImg {
+            width: 150px; height: 150px; border-radius: 50%;
+            object-fit: cover; margin-bottom: 20px;
+            border: 4px solid var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; gap: 15px; }
+            nav ul { flex-direction: column; text-align: center; gap: 10px; }
+            .hero h1 { font-size: 2rem; }
+            .contact-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="navbar">
+        <div class="container">
+            <div class="logo">♻️ The E-Waste <span>Project</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#vision">Mission</a></li>
+                    <li><a href="#updates">Updates</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Sustainable E-Waste Management</h1>
+        <p>Join us in our mission to collect, segregate, and recycle electronic waste for a cleaner environment.</p>
+        <a href="#contact" class="btn">Join the Cause</a>
+    </section>
+
+    <section id="vision">
+        <h2 class="section-title">Our Purpose</h2>
+        <div class="vm-grid">
+            <div class="card">
+                <h3>Our Vision</h3>
+                <p>To create a community where electronic waste is no longer a hazard but a resource.</p>
+            </div>
+            <div class="card">
+                <h3>Our Mission</h3>
+                <p>To educate the public on proper disposal and partner with certified recyclers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="updates">
+        <h2 class="section-title">Latest Updates</h2>
+        <div class="updates-grid">
+            <div class="update-item">
+                <span class="date-badge">Oct 25, 2023</span>
+                <div class="update-content">
+                    <h3>Community Drive</h3>
+                    <p>We collected over 500kg of old electronics at the plaza!</p>
+                    <a href="https://www.facebook.com/theewasteproject" target="_blank" class="read-more">View on Facebook &rarr;</a>
+                </div>
+            </div>
+            <div class="update-item">
+                <span class="date-badge">Nov 10, 2023</span>
+                <div class="update-content">
+                    <h3>New Partners</h3>
+                    <p>Partnering with the State University for campus bins.</p>
+                    <a href="https://www.facebook.com/theewasteproject" target="_blank" class="read-more">View on Facebook &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <h2 class="section-title">Meet the Team</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Click on a member to learn more about them.</p>
+        
+        <div class="team-grid">
+            <div class="team-member" onclick="openModal('carl')">
+                <img src="carl.png" alt="Carl" class="team-img" onerror="this.src='https://via.placeholder.com/150'">
+                <h4>Carl</h4>
+                <p>Project Lead</p>
+                <span class="know-more-btn">Know more about Carl</span>
+            </div>
+
+            <div class="team-member" onclick="openModal('scott')">
+                <img src="scott.png" alt="Scott" class="team-img" onerror="this.src='https://via.placeholder.com/150'">
+                <h4>Scott</h4>
+                <p>Operations Head</p>
+                <span class="know-more-btn">Know more about Scott</span>
+            </div>
+
+            <div class="team-member" onclick="openModal('renz')">
+                <img src="renz.png" alt="Renz" class="team-img" onerror="this.src='https://via.placeholder.com/150'">
+                <h4>Renz</h4>
+                <p>Technical Director</p>
+                <span class="know-more-btn">Know more about Renz</span>
+            </div>
+
+            <div class="team-member" onclick="openModal('nate')">
+                <img src="nate.png" alt="Nate" class="team-img" onerror="this.src='https://via.placeholder.com/150'">
+                <h4>Nate</h4>
+                <p>Logistics Officer</p>
+                <span class="know-more-btn">Know more about Nate</span>
+            </div>
+
+            <div class="team-member" onclick="openModal('lori')">
+                <img src="lori.png" alt="Lori" class="team-img" onerror="this.src='https://via.placeholder.com/150'">
+                <h4>Lori</h4>
+                <p>Communications</p>
+                <span class="know-more-btn">Know more about Lori</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" style="background: white;">
+        <h2 class="section-title">Our Partners</h2>
+        <div class="partners-row">
+            <div class="partner-logo">EcoRecycle</div>
+            <div class="partner-logo">GreenCity Govt</div>
+            <div class="partner-logo">TechUniversity</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p>Visit us at UP Electrical and Electronics Engineering Institute.</p>
+                <br>
+                <p><strong>Email:</strong> <br> <a href="mailto:theewasteproject@gmail.com" style="text-decoration: underline;">theewasteproject@gmail.com</a></p>
+                <br>
+                <p><strong>Facebook:</strong> <br> <a href="https://www.facebook.com/theewasteproject" target="_blank" style="text-decoration: underline;">fb.com/theewasteproject</a></p>
+                
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.200566904603!2d121.0660633148401!3d14.64646198977158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b776c533965b%3A0x72c1c686150e7029!2sElectrical%20and%20Electronics%20Engineering%20Institute!5e0!3m2!1sen!2sph!4v1625000000000!5m2!1sen!2sph" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="message" rows="5" placeholder="How can we help?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" id="submitBtn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 The E-Waste Project.</p>
+        <p>Email: <a href="mailto:theewasteproject@gmail.com" style="color: #81C784;">theewasteproject@gmail.com</a></p>
+        <div class="footer-links" style="margin-top: 10px;">
+            <a href="https://www.facebook.com/theewasteproject" target="_blank">Facebook</a> | 
+            <a href="#home">Home</a> | 
+            <a href="#contact">Contact</a>
+        </div>
+    </footer>
+
+    <div id="teamModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImg" src="" alt="Profile">
+            <h2 id="modalName">Name</h2>
+            <h4 id="modalRole" style="color: var(--primary-color); margin-bottom: 20px;">Role</h4>
+            <p id="modalBio">Bio description goes here.</p>
+            <br>
+            <button class="btn" onclick="document.querySelector('.close').click()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. SMART NAVBAR
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) navbar.classList.add("nav-up");
+            else navbar.classList.remove("nav-up");
+            lastScrollTop = scrollTop;
+        });
+
+        // 2. CONTACT FORM SIMULATION
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Sending...";
+            submitBtn.style.backgroundColor = "#ccc"; 
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                alert(`Thanks ${name}! We have received your message. We will reply to ${document.getElementById('email').value} shortly.`);
+                form.reset();
+                submitBtn.innerText = "Message Sent!";
+                submitBtn.style.backgroundColor = "#2E7D32"; 
+                setTimeout(() => {
+                    submitBtn.innerText = originalText;
+                    submitBtn.style.backgroundColor = "";
+                    submitBtn.disabled = false;
+                }, 3000);
+            }, 2000);
+        });
+
+        // 3. TEAM MEMBER MODAL LOGIC
+        // Data for each member
+        const teamData = {
+            carl: { 
+                name: "Carl", 
+                role: "Project Lead", 
+                img: "carl.png", 
+                bio: "Carl oversees the entire project, coordinating between departments to ensure our e-waste goals are met." 
+            },
+            scott: { 
+                name: "Scott", 
+                role: "Operations Head", 
+                img: "scott.png", 
+                bio: "Scott manages the day-to-day operations of collection drives and recycling partnerships." 
+            },
+            renz: { 
+                name: "Renz", 
+                role: "Technical Director", 
+                img: "renz.png", 
+                bio: "Renz handles the technical aspects of recycling and data security for donated devices." 
+            },
+            nate: { 
+                name: "Nate", 
+                role: "Logistics Officer", 
+                img: "nate.png", 
+                bio: "Nate ensures that all collected materials are transported safely to our recycling partners." 
+            },
+            lori: { 
+                name: "Lori", 
+                role: "Communications", 
+                img: "lori.png", 
+                bio: "Lori handles our social media presence and community outreach programs." 
+            }
+        };
+
+        const modal = document.getElementById("teamModal");
+        const span = document.getElementsByClassName("close")[0];
+
+        // Function to open modal with specific data
+        function openModal(memberKey) {
+            const member = teamData[memberKey];
+            if(member) {
+                document.getElementById("modalName").innerText = member.name;
+                document.getElementById("modalRole").innerText = member.role;
+                document.getElementById("modalBio").innerText = member.bio;
+                document.getElementById("modalImg").src = member.img;
+                
+                // Show modal
+                modal.style.display = "block";
+            }
+        }
+
+        // Close modal when X is clicked
+        span.onclick = function() { modal.style.display = "none"; }
+
+        // Close modal when clicking outside the box
+        window.onclick = function(event) {
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+    </script>
+</body>
+</html>
