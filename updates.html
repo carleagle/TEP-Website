@@ -3,99 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Updates - The E-Waste Project</title>
-    <style>
-        /* Shared CSS */
-        :root { --primary-color: #2E7D32; --secondary-color: #81C784; --accent-color: #FFC107; --dark-text: #333333; --light-bg: #f4f9f4; --white: #ffffff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { line-height: 1.6; color: var(--dark-text); background-color: var(--light-bg); }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        
-        header { background-color: var(--primary-color); color: var(--white); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; transition: top 0.4s; }
-        .nav-up { top: -80px; }
-        .container { width: 90%; max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: bold; }
-        .logo span { color: var(--accent-color); }
-        nav ul { display: flex; gap: 20px; }
-        nav a:hover { color: var(--accent-color); transition: 0.3s; }
-
-        section { padding: 100px 20px 60px 20px; } /* Added top padding for fixed header */
-        .section-title { text-align: center; margin-bottom: 40px; color: var(--primary-color); font-size: 2.2rem; position: relative; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent-color); margin: 10px auto; }
-
-        .updates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: auto; }
-        .update-item { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); overflow: hidden; }
-        .date-badge { background: var(--secondary-color); color: white; padding: 5px 10px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin: 15px 0 0 15px; border-radius: 4px; }
-        .update-content { padding: 20px; }
-        .read-more { color: var(--primary-color); font-weight: bold; display: block; margin-top: 10px; }
-
-        footer { background: #222; color: white; text-align: center; padding: 30px 20px; margin-top: 40px; }
-        .footer-links a { color: var(--secondary-color); margin: 0 10px; }
-        @media (max-width: 768px) { .container { flex-direction: column; gap: 15px; } nav ul { flex-direction: column; text-align: center; gap: 10px; } }
-    </style>
+    <title>News & Updates - The E-Waste Project</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header id="navbar">
-        <div class="container">
-            <div class="logo">♻️ The E-Waste <span>Project</span></div>
+    <div class="top-bar"><div class="container"><a href="#">Newsletter</a><a href="#">Press</a><a href="https://facebook.com/theewasteproject">Facebook</a></div></div>
+    <header>
+        <div class="container header-inner">
+            <div class="logo">♻️ The E-Waste Project</div>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#vision">Mission</a></li>
-                    <li><a href="updates.html" style="color: var(--accent-color);">Updates</a></li>
-                    <li><a href="team.html">Team</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
+                    <li class="dropdown"><a href="#">About ▾</a>
+                        <div class="dropdown-content"><a href="mission.html">Mission & Vision</a><a href="team.html">Our Team</a><a href="partners.html">Partners</a></div>
+                    </li>
+                    <li class="dropdown"><a href="#">Resources ▾</a>
+                        <div class="dropdown-content"><a href="resources.html">All Resources</a></div>
+                    </li>
+                    <li><a href="updates.html" style="color:var(--primary-color)">News & Updates</a></li>
+                    <li><a href="index.html#contact">Get Involved</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section id="updates">
-        <h2 class="section-title">Latest Updates</h2>
-        <div class="updates-grid">
-            <div class="update-item">
-                <span class="date-badge">Oct 25, 2023</span>
-                <div class="update-content">
-                    <h3>Community Drive</h3>
-                    <p>We collected over 500kg of old electronics at the plaza!</p>
-                    <a href="https://www.facebook.com/theewasteproject" target="_blank" class="read-more">View on Facebook →</a>
-                </div>
-            </div>
-            <div class="update-item">
-                <span class="date-badge">Nov 10, 2023</span>
-                <div class="update-content">
-                    <h3>New Partners</h3>
-                    <p>Partnering with the State University for campus bins.</p>
-                    <a href="https://www.facebook.com/theewasteproject" target="_blank" class="read-more">View on Facebook →</a>
-                </div>
-            </div>
-            <div class="update-item">
-                <span class="date-badge">Dec 01, 2023</span>
-                <div class="update-content">
-                    <h3>Recycling Workshop</h3>
-                    <p>Teaching students how to identify valuable components in e-waste.</p>
-                    <a href="https://www.facebook.com/theewasteproject" target="_blank" class="read-more">View on Facebook →</a>
-                </div>
-            </div>
+    <div class="page-header">
+        <div class="container">
+            <h1>News & Updates</h1>
         </div>
-    </section>
+    </div>
+
+    <div class="container" style="max-width: 800px;">
+        <article class="news-card-horiz">
+            <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2" class="news-img">
+            <div>
+                <small>Oct 25, 2023 • Community</small>
+                <h3>Successful Collection Drive at City Plaza</h3>
+                <p>Over 500kg of electronics were diverted from landfills thanks to our volunteers...</p>
+                <a href="#" style="color:var(--primary-color); font-weight:bold;">Read More →</a>
+            </div>
+        </article>
+
+        <article class="news-card-horiz">
+            <img src="https://images.unsplash.com/photo-1591193686104-fddba4d0e4d8" class="news-img">
+            <div>
+                <small>Nov 10, 2023 • Partners</small>
+                <h3>New Partnership with State University</h3>
+                <p>Formalizing our agreement to handle institutional e-waste for the entire campus...</p>
+                <a href="#" style="color:var(--primary-color); font-weight:bold;">Read More →</a>
+            </div>
+        </article>
+    </div>
 
     <footer>
-        <p>© 2023 The E-Waste Project.</p>
-        <p>Email: <a href="mailto:theewasteproject@gmail.com" style="color: #81C784;">theewasteproject@gmail.com</a></p>
-        <div class="footer-links" style="margin-top: 10px;">
-            <a href="https://www.facebook.com/theewasteproject" target="_blank">Facebook</a> | <a href="index.html">Home</a> | <a href="index.html#contact">Contact</a>
-        </div>
+        <div class="container"><p style="text-align: center;">© 2024 The E-Waste Project.</p></div>
     </footer>
-
-    <script>
-        let lastScrollTop = 0; const navbar = document.getElementById("navbar");
-        window.addEventListener("scroll", function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) navbar.classList.add("nav-up"); else navbar.classList.remove("nav-up");
-            lastScrollTop = scrollTop;
-        });
-    </script>
 </body>
-</html>`
+</html>
