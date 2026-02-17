@@ -1,6 +1,6 @@
 /* --- SHARED CSS (style.css) --- */
 :root {
-    --primary-color: #005c2e; /* Geneva Green */
+    --primary-color: #005c2e; /* TEP Green */
     --secondary-color: #4a8c2a; 
     --accent-color: #f0c000;
     --dark-text: #222;
@@ -20,8 +20,15 @@ ul { list-style: none; }
 .top-bar a:hover { color: var(--white); }
 
 header { background: var(--white); border-bottom: 3px solid var(--primary-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-.header-inner { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
-.logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+
+/* --- LOGO FIX --- */
+.logo { display: flex; align-items: center; }
+.logo img { 
+    height: 50px; /* Forces logo to be small and neat */
+    width: auto; 
+    display: block;
+}
 
 nav ul { display: flex; gap: 30px; }
 nav li { position: relative; }
@@ -38,13 +45,21 @@ nav a:hover { color: var(--primary-color); }
 .page-header { background: var(--primary-color); color: white; padding: 60px 0; margin-bottom: 40px; text-align: center; }
 .page-header h1 { font-size: 2.5rem; }
 
-/* --- HOME PORTAL LAYOUT --- */
-.hero-portal { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; color: white; padding: 100px 0; margin-bottom: 40px; }
+/* --- HOME HERO (Uses your 'home-bg.jpg') --- */
+.hero-portal { 
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('home-bg.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    color: white; 
+    padding: 120px 0; 
+    margin-bottom: 40px; 
+}
 .hero-content { max-width: 800px; }
 .hero-tag { background: var(--accent-color); color: #000; padding: 4px 10px; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; border-radius: 3px; }
 .btn { background: var(--primary-color); color: white; padding: 10px 25px; border-radius: 4px; font-weight: bold; display: inline-block; margin-top: 20px; }
 .btn:hover { background: #004522; }
 
+/* --- SECTIONS & GRIDS --- */
 .portal-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-bottom: 60px; }
 .section-head { border-bottom: 2px solid #ddd; margin-bottom: 20px; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-end; }
 .section-head h2 { color: var(--primary-color); font-size: 1.5rem; border-bottom: 3px solid var(--primary-color); margin-bottom: -12px; padding-bottom: 10px; display: inline-block; }
@@ -56,22 +71,22 @@ nav a:hover { color: var(--primary-color); }
 .team-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--secondary-color); margin-bottom: 15px; background-color: #eee; }
 .know-more-btn { margin-top: 10px; font-size: 0.8rem; color: var(--primary-color); text-decoration: underline; }
 
-/* --- MODAL (For Team) --- */
+/* --- TEAM MODAL --- */
 .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
 .modal-content { background-color: #fefefe; margin: 10% auto; padding: 40px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; position: relative; text-align: center; }
 .close { position: absolute; top: 10px; right: 20px; font-size: 28px; cursor: pointer; }
 
-/* --- PARTNERS GRID --- */
+/* --- PARTNERS --- */
 .partners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 30px; }
 .partner-card { background: white; padding: 40px; border: 1px solid #ddd; border-radius: 8px; text-align: center; font-weight: bold; color: #555; display: flex; align-items: center; justify-content: center; height: 150px; }
 
-/* --- RESOURCES LIST --- */
+/* --- RESOURCES --- */
 .resource-list { background: white; border-radius: 8px; overflow: hidden; border: 1px solid #eee; }
 .resource-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #eee; }
 .resource-item:hover { background-color: #f9f9f9; }
 .btn-small { background: var(--secondary-color); color: white; padding: 5px 15px; border-radius: 4px; font-size: 0.9rem; }
 
-/* --- NEWS ITEMS --- */
+/* --- NEWS & EVENTS --- */
 .news-card-horiz { display: flex; gap: 20px; margin-bottom: 30px; background: white; border: 1px solid #eee; padding: 15px; border-radius: 8px; }
 .news-img { width: 180px; height: 120px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
 .sidebar-widget { background: white; padding: 25px; border: 1px solid #eee; border-radius: 8px; margin-bottom: 30px; }
@@ -79,13 +94,13 @@ nav a:hover { color: var(--primary-color); }
 .date-box { background: var(--light-bg); border: 1px solid #ddd; padding: 5px 10px; text-align: center; border-radius: 4px; min-width: 60px; height: fit-content; }
 .date-box span { display: block; font-weight: bold; color: var(--primary-color); font-size: 1.2rem; }
 
-/* --- CONTACT PAGE --- */
+/* --- CONTACT PAGE LAYOUT --- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 50px; }
-.contact-info-box { background: white; padding: 30px; border-radius: 8px; border: 1px solid #ddd; }
+.contact-info-box { background: white; padding: 30px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 .form-group { margin-bottom: 20px; }
 .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary-color); }
 .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; }
-.btn-submit { background: var(--primary-color); color: white; border: none; padding: 15px 30px; font-size: 1rem; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; }
+.btn-submit { background: var(--primary-color); color: white; border: none; padding: 15px 30px; font-size: 1rem; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; transition: background 0.3s; }
 .btn-submit:hover { background: #004522; }
 .map-container { width: 100%; height: 300px; margin-top: 20px; border-radius: 8px; overflow: hidden; border: 1px solid #ccc; }
 iframe { width: 100%; height: 100%; border: 0; }
@@ -102,81 +117,4 @@ footer { background: #1a1a1a; color: #ddd; padding: 60px 0 20px; margin-top: 60p
     nav ul { flex-wrap: wrap; justify-content: center; }
     .news-card-horiz { flex-direction: column; }
     .news-img { width: 100%; height: 200px; }
-}
-
-/* --- CONTACT PAGE STYLES --- */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Split into 2 columns */
-    gap: 50px;
-    margin-bottom: 50px;
-}
-
-.contact-info-box {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-.form-group input, 
-.form-group textarea, 
-.form-group select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: inherit;
-}
-
-.btn-submit {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.btn-submit:hover {
-    background: #004522;
-}
-
-.map-container {
-    width: 100%;
-    height: 300px;
-    margin-top: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #ccc;
-}
-
-iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* Mobile Fix */
-@media (max-width: 768px) {
-    .contact-grid {
-        grid-template-columns: 1fr; /* Stack vertically on phone */
-    }
 }
